@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +24,21 @@
       padding: 20px 50px;
       background: #fff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
     }
     header img {
       height: 40px;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+    }
+    nav {
+      display: flex;
+      align-items: center;
     }
     nav a {
       margin: 0 15px;
@@ -33,6 +46,40 @@
       color: #000;
       font-weight: bold;
     }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 10px 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        margin: 10px 0;
+        padding: 10px 20px;
+        text-align: left;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      header {
+        flex-wrap: wrap;
+      }
+    }
+
     .hero {
       background: url('slider-2.jpg') no-repeat right center;
       background-size: cover;
@@ -124,9 +171,8 @@
 <body>
   <header>
     <img src="Logo/logo.png" height="150" width="175" alt="Cream Capital">
-
-   
-    <nav>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="token.html">Token Ecosystem</a>
       <a href="faq.html">FAQ</a>
@@ -179,5 +225,11 @@
   <footer>
     &copy; 2017 Cream Capital, LLC<br>Headquartered in Las Vegas, Nevada.
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('main-nav').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
